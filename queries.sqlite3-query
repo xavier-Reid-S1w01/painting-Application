@@ -1,0 +1,31 @@
+-- database: ./database.db
+
+-- Use the ▷ button in the top right corner to run the entire file.
+
+SELECT * FROM Paintings;
+
+SELECT
+Paintings.Title,
+Artists.ArtistName,
+ArtMovement.MovementName,
+Medium.MediumName
+FROM Paintings
+JOIN Artists ON Paintings.ArtistID = Artists.ArtistID
+JOIN ArtMovement ON Paintings.MovementID = ArtMovement.MovementID
+JOIN Medium ON Paintings.MediumID = Medium.MediumID; 
+
+SELECT Paintings.Title
+FROM Paintings
+JOIN Artists ON Paintings.ArtistID = Artists.ArtistID
+WHERE Artists.ArtistName = 'Vincent van Gogh'; 
+
+SELECT Paintings.Title
+FROM Paintings
+JOIN ArtMovement ON Paintings.MovementID = ArtMovement.MovementID
+WHERE ArtMovement.MovementName = 'Impressionism'; 
+
+SELECT Paintings.Title
+FROM Paintings
+JOIN Medium ON Paintings.MediumID = Medium.MediumID
+WHERE Medium.MediumName = 'Oil'; 
+
