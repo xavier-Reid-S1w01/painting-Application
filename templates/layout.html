@@ -3,9 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Art Vault</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
-    {% block body %}{% endblock %}
+
+    <header>
+        <h1>Art Vault</h1>
+        <div class="search-container">
+            <input type="text" placeholder="Search bar" class="search-bar">
+        </div>
+    </header>
+
+    <nav>
+        <a href="/">Home</a>
+        <a href="#">ArtWorks</a>
+        <a href="#">Artist</a>
+    </nav>
+
+    <main>
+        {% block body %}{% endblock %}
+    </main>
+
 </body>
 </html>

@@ -25,8 +25,10 @@ def query_db(query, args=(), one=False):
 
 @app.route("/")
 def home():
-    Paintings = query_db("SELECT * FROM Paintings")
-    return render_template("home.html", Paintings=Paintings)
+    # This grabs all rows from the Paintings table
+    all_paintings = query_db("SELECT * FROM Paintings")
+    # This sends that list to the HTML
+    return render_template("home.html", Paintings=all_paintings)
 
 
 

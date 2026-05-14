@@ -1,5 +1,25 @@
 {% extends "layout.html" %}
-  {% block body %}
-  {{ Paintings }}
-  
-  {% endblock %}
+
+{% block body %}
+<div class="top-row">
+    {% for painting in Paintings[:4] %}
+        <img src="{{ painting[7] }}" alt="Preview Image">
+    {% endfor %}
+</div>
+
+<hr class="divider">
+
+<div class="content-wrapper">
+    <h2 style="text-align: left;">Favourites</h2>
+    
+    <div class="favorites-grid">
+        {% for painting in Paintings %}
+        <div class="image-container">
+            <img src="{{ painting[7] }}" alt="{{ painting[1] }}">
+            <h3>{{ painting[1] }}</h3>
+            <p>{{ painting[2] }}</p>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
