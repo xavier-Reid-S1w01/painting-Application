@@ -38,3 +38,18 @@ nav {
   padding-left: 60px;
   margin-bottom: 25px;
 }
+
+.top-row {
+  display: flex !important;
+  flex-direction: row !important;
+  gap: 12px !important; 
+  width: 100% !important;
+}
+
+.top-row img {
+  flex: 1 !important;
+  width: 10% !important;
+  height: 550px !important; 
+  object-fit: cover !important; 
+  object-position: center !important;
+}
