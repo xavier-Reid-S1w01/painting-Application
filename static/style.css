@@ -30,14 +30,38 @@ header h1 {
 
 /* navigation bar */
 
-nav {
+nav, .orange-bar {
   background-color: #FFB347;
-  padding: 20px 0;
-  display: flex;
-  justify-content: flex-start;
-  padding-left: 60px;
+  height: 60px; 
+  width: 100%;
+  box-sizing: border-box;
   margin-bottom: 25px;
 }
+
+nav {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center; 
+  padding-left: 60px;
+  gap: 40px; 
+}
+
+
+.orange-bar {
+  margin-top: 25px; 
+}
+
+nav a {
+  text-decoration: none;
+  color: #000; 
+  font-weight: bold;
+}
+
+nav a:hover {
+  color: #FFFFFF;
+  transition: color 0.3s ease;
+}
+
 
 .top-row {
   display: flex !important;
@@ -52,4 +76,33 @@ nav {
   height: 550px !important; 
   object-fit: cover !important; 
   object-position: center !important;
+}
+
+.content-wrapper h2 {
+  font-size: 2.5rem; 
+  font-weight: 700;
+  margin-bottom: 30px; 
+}
+
+.favorites-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;          
+  
+  max-width: 1200px;  
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+
+.content-wrapper {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.image-container img {
+  width: 100%;       
+  max-width: 500px;   
+  height: auto;       
 }

@@ -8,20 +8,26 @@
     <img src="{{ Paintings[6][7] }}" alt="The Cafe Terrace at Night">
 
 </div>
+<div class="content-wrapper">
+  <div class="favorites-grid">
+    </div>
+</div>
+
+<div class="orange-bar"></div>
 
 <hr class="divider">
 
 <div class="content-wrapper">
     <h2 style="text-align: left;">Favourites</h2>
-    
-    <div class="favorites-grid">
-        {% for painting in Paintings %}
-        <div class="image-container">
-            <img src="{{ painting[7] }}" alt="{{ painting[1] }}">
-            <h3>{{ painting[1] }}</h3>
-            <p>{{ painting[2] }}</p>
-        </div>
-        {% endfor %}
-    </div>
+   <div class="favorites-grid">
+  {% for painting in Paintings %}
+    {% if painting[0] in [2, 7, 11, 12] %}
+      <div class="image-container">
+        <img src="{{ painting[7] }}" alt="{{ painting[1] }}">
+        <h3>{{ painting[1] }}</h3>
+        <p>{{ painting[2] }}</p>
+      </div>
+    {% endif %}
+  {% endfor %}
 </div>
 {% endblock %}
