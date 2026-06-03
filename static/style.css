@@ -114,7 +114,7 @@ nav a:hover {
     text-align: left;
 }
 
-/* Small "ArtVault" text */
+/* ArtVault text */
 .brand-name {
     font-family: "Times New Roman", serif;
     font-size: 40px;
@@ -124,20 +124,20 @@ nav a:hover {
     margin-bottom: 25px;
 }
 
-/* Clickable Links Layout */
+/* Clickable Link */
 .footer-links {
     display: flex;
-    flex-direction: column; /* Stack links vertically */
-    gap: 12px;              /* Adds space between each link */
+    flex-direction: column; 
+    gap: 12px;              
 }
 
-/* Individual Link Styling */
+/* Link Styling */
 .footer-links a {
     font-family: "Times New Roman", serif;
     font-size: 16px;
     color: #000000;
-    text-decoration: none; /* Removes the default underline */
-    width: fit-content;    /* Ensures only the text is clickable */
+    text-decoration: none; 
+    width: fit-content;    
     transition: color 0.2s ease;
     margin-left: 25px;
 }

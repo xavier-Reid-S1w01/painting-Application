@@ -1,4 +1,4 @@
-from flask import Flask, render_template,g
+from flask import Flask, render_template, g
 import sqlite3 
 
 app = Flask(__name__)
@@ -23,6 +23,8 @@ def query_db(query, args=(), one=False):
     cur.close()
     return (rv[0] if rv else None) if one else rv
 
+
+# 1. HOME ROUTE (Combines your database query with your home page)
 @app.route("/")
 def home():
     # This grabs all rows from the Paintings table
@@ -31,7 +33,18 @@ def home():
     return render_template("home.html", Paintings=all_paintings)
 
 
+# 2. ARTWORKS ROUTE
+@app.route('/artworks')
+def artworks():
+    return render_template('artworks.html') 
 
 
+# 3. ARTIST ROUTE
+@app.route('/artist')
+def artist():
+    return render_template('artist.html')   
+
+
+# ALWAYS KEEP THIS AT the very bottom of your file
 if __name__ == "__main__":
     app.run(debug=True)
