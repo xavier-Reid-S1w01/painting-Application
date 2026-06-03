@@ -21,7 +21,7 @@
     <h2 style="text-align: left;">Favourites</h2>
    <div class="favorites-grid">
   {% for painting in Paintings %}
-    {% if painting[0] in [5, 8, 13, 14] %}
+    {% if painting[0] in [5, 15, 13, 14] %}
       <div class="image-container">
         <img src="{{ painting[7] }}" alt="{{ painting[1] }}">
         <h3>{{ painting[1] }}</h3>
