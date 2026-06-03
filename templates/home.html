@@ -19,15 +19,27 @@
 
 <div class="content-wrapper">
     <h2 style="text-align: left;">Favourites</h2>
-   <div class="favorites-grid">
-  {% for painting in Paintings %}
-    {% if painting[0] in [5, 15, 13, 14] %}
-      <div class="image-container">
-        <img src="{{ painting[7] }}" alt="{{ painting[1] }}">
-        <h3>{{ painting[1] }}</h3>
-        <p>{{ painting[2] }}</p>
-      </div>
-    {% endif %}
-  {% endfor %}
-</div>
+    <div class="favorites-grid">
+    {% for painting in Paintings %}
+        {% if painting[0] in [5, 15, 13, 14] %}
+            <div class="image-container">
+                <img src="{{ painting[7] }}" alt="{{ painting[1] }}">
+                <h3>{{ painting[1] }}</h3>
+                <p>{{ painting[2] }}</p>
+            </div>
+        {% endif %}
+    {% endfor %}
+    </div> </div> <div class="orange-bar"></div>
+
+<footer class="footer-section">
+    <p class="brand-name">ArtVault</p>
+    <div class="footer-links">
+        <a href="#">About Us</a>
+        <a href="#">Collection Details</a>
+        <a href="#">Contact Support</a>
+        <a href="#">Privacy Policy</a>
+    </div>
+</footer>
+
 {% endblock %}
+

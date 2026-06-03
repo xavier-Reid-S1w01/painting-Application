@@ -106,3 +106,42 @@ nav a:hover {
   max-width: 500px;   
   height: auto;       
 }
+
+/* Footer Container */
+.footer-section {
+    padding: 0px 20px 40px 20px;
+    background-color: #fdf1d6;
+    text-align: left;
+}
+
+/* Small "ArtVault" text */
+.brand-name {
+    font-family: "Times New Roman", serif;
+    font-size: 40px;
+    color: #000000;
+    margin-top: 10px;      
+    margin-left: 25px;     
+    margin-bottom: 25px;
+}
+
+/* Clickable Links Layout */
+.footer-links {
+    display: flex;
+    flex-direction: column; /* Stack links vertically */
+    gap: 12px;              /* Adds space between each link */
+}
+
+/* Individual Link Styling */
+.footer-links a {
+    font-family: "Times New Roman", serif;
+    font-size: 16px;
+    color: #000000;
+    text-decoration: none; /* Removes the default underline */
+    width: fit-content;    /* Ensures only the text is clickable */
+    transition: color 0.2s ease;
+    margin-left: 25px;
+}
+
+.footer-links a:hover {
+    color: #fff;       
+}
