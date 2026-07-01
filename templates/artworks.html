@@ -1,19 +1,32 @@
 {% extends "layout.html" %}
 
-{% block body %}
-<div class="content-wrapper">
-    <h2>ArtWorks Collection</h2>
-</div>
-
-
-</div> </div> <div class="orange-bar"></div>
-<footer class="footer-section">
-    <p class="brand-name">ArtVault</p>
-    <div class="footer-links">
-        <a href="#">About Us</a>
-        <a href="#">Collection Details</a>
-        <a href="#">Contact Support</a>
-        <a href="#">Privacy Policy</a>
-    </div>
-</footer>
+{% block styles %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='artworks.css') }}">
 {% endblock %}
+
+{% block body %}
+<div class="artworks-page">
+
+    <div class="top-row">
+        <img src="https://media.architecturaldigest.com/photos/55e76762cd709ad62e8e8d4e/master/pass/dam-images-architecture-2015-09-university-art-museums-university-of-michigan-museum-of-art-01.jpg" alt="Art Museum">
+        <div class="overlay-text">
+            <h2>Art Works</h2>
+            <p>Explore The Famous Paintings</p>
+        </div>
+    </div>
+
+    <div class="content-wrapper">
+        <div class="artworks-grid">
+            {% for painting in Paintings %}
+                <div class="artwork-card">
+                    <img src="{{ painting[7] }}" alt="{{ painting[1] }}">
+                    <div class="artwork-info">
+                        <h3>{{ painting[1] }}</h3>
+                        <p class="artist-name">By {{ painting[2] }}</p>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+
+</div> {% endblock %}

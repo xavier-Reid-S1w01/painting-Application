@@ -1,5 +1,3 @@
-/* 1. Global page */
-
 body {
   background-color: #fdf1d6;
   font-family: "Times New Roman", serif;
@@ -60,56 +58,6 @@ nav a {
 nav a:hover {
   color: #FFFFFF;
   transition: color 0.3s ease;
-}
-
-
-.top-row {
-  display: flex !important;
-  flex-direction: row !important;
-  gap: 12px !important; 
-  width: 100% !important;
-}
-
-.top-row img {
-  flex: 1 !important;
-  width: 10% !important;
-  height: 550px !important; 
-  object-fit: cover !important; 
-  object-position: center !important;
-}
-
-.content-wrapper h2 {
-  font-size: 2.5rem; 
-  font-weight: 700;
-  margin-bottom: 30px; 
-}
-
-.favorites-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 60px;          
-  
-  max-width: 1200px;  
-  margin: 0 auto;
-  padding: 0 20px;
-}
-
-
-.content-wrapper {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 20px;
-}
-
-.image-container img {
-  width: 100%;       
-  max-width: 500px;   
-  height: auto;  
-  transition: transform 0.3s ease-in-out;     
-}
-
-.image-container:hover img {
-  transform: scale(1.05);
 }
 
 /* Footer Container */

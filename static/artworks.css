@@ -1,0 +1,46 @@
+/* Force everything from the layout to drop margins on this specific page */
+main, body, html {
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+.artworks-page {
+    margin-top: 0 !important;
+    padding-top: 0 !important;
+}
+
+.artworks-page .top-row {
+    position: relative;
+    width: 100vw;               /* Force container to match browser viewport width */
+    margin-left: calc(-50vw + 50%); /* Centers full width breaks out of layout constraints */
+    margin-top: 0 !important;
+    padding-top: 0 !important;
+    display: block !important;  /* Overrides the flexbox behavior from home.css */
+}
+
+.artworks-page .top-row img {
+    display: block !important;
+    width: 100% !important;     
+    height: 400px !important;              
+    object-fit: cover !important;          
+    margin-top: 0 !important;   
+}
+
+.artworks-page .overlay-text {
+    position: absolute;   
+    top: 50%;             
+    left: 10%;            
+    transform: translateY(-50%); 
+    color: white;         
+    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7); 
+}
+
+.artworks-page .overlay-text h2 {
+    font-size: 3rem;      
+    margin: 0 0 10px 0;   
+}
+
+.artworks-page .overlay-text p {
+    font-size: 1.2rem;    
+    margin: 0;
+}

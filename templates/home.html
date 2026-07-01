@@ -1,45 +1,41 @@
 {% extends "layout.html" %}
 
-{% block body %}
-<div class="top-row">
-    <img src="{{ Paintings[9][7] }}" alt="The Tree of Life (Stoclet Frieze)">
-    <img src="{{ Paintings[10][7] }}" alt="The Scream">
-    <img src="{{ Paintings[11][7] }}" alt="The Swing">
-    <img src="{{ Paintings[6][7] }}" alt="The Cafe Terrace at Night">
-
-</div>
-<div class="content-wrapper">
-  <div class="favorites-grid">
-    </div>
-</div>
-
-<div class="orange-bar"></div>
-
-<hr class="divider">
-
-<div class="content-wrapper">
-    <h2 style="text-align: left;">Favourites</h2>
-    <div class="favorites-grid">
-    {% for painting in Paintings %}
-        {% if painting[0] in [5, 15, 13, 14] %}
-            <div class="image-container">
-                <img src="{{ painting[7] }}" alt="{{ painting[1] }}">
-                <h3>{{ painting[1] }}</h3>
-                <p>{{ painting[2] }}</p>
-            </div>
-        {% endif %}
-    {% endfor %}
-    </div> </div> <div class="orange-bar"></div>
-
-<footer class="footer-section">
-    <p class="brand-name">ArtVault</p>
-    <div class="footer-links">
-        <a href="#">About Us</a>
-        <a href="#">Collection Details</a>
-        <a href="#">Contact Support</a>
-        <a href="#">Privacy Policy</a>
-    </div>
-</footer>
-
+{% block styles %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='home.css') }}">
 {% endblock %}
 
+{% block body %}
+
+<div class="home-page">
+
+    <div class="top-row">
+        <img src="{{ Paintings[9][7] }}" alt="The Tree of Life (Stoclet Frieze)">
+        <img src="{{ Paintings[10][7] }}" alt="The Scream">
+        <img src="{{ Paintings[11][7] }}" alt="The Swing">
+        <img src="{{ Paintings[6][7] }}" alt="The Cafe Terrace at Night">
+    </div> 
+    
+    <div class="content-wrapper">
+        <div class="favorites-grid"></div>
+    </div>
+
+    <div class="orange-bar"></div>
+
+    <hr class="divider">
+
+    <div class="content-wrapper">
+        <h2 style="text-align: left;">Favourites</h2>
+        <div class="favorites-grid">
+        {% for painting in Paintings %}
+            {% if painting[0] in [5, 15, 13, 14] %}
+                <div class="image-container">
+                    <img src="{{ painting[7] }}" alt="{{ painting[1] }}">
+                    <h3>{{ painting[1] }}</h3>
+                    <p>{{ painting[2] }}</p>
+                </div>
+            {% endif %}
+        {% endfor %}
+        </div> 
+    </div> 
+    
+   {% endblock %}
