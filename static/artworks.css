@@ -44,3 +44,65 @@ main, body, html {
     font-size: 1.2rem;    
     margin: 0;
 }
+
+/* Container that holds the whole track */
+.genre-container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 20px auto;
+    padding: 10px 20px;
+    overflow: hidden; /* Kepp it clean */
+}
+
+/* The actual scrolling track */
+.genre-scroll-wrapper {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap; /* Prevents chips from wrapping to a new line */
+    gap: 12px;
+    overflow-x: auto;  /* Enables sideways scrolling */
+    padding-bottom: 8px; /* Room for custom scrollbar */
+    
+    /* Smooth scrolling feel on mobile touch screens */
+    -webkit-overflow-scrolling: touch; 
+}
+
+/* Hide default ugly scrollbars in Webkit browsers (Chrome/Safari) */
+.genre-scroll-wrapper::-webkit-scrollbar {
+    height: 6px;
+}
+.genre-scroll-wrapper::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 10px;
+}
+.genre-scroll-wrapper::-webkit-scrollbar-thumb {
+    background: #e0a96d; /* Use a color matching your design theme */
+    border-radius: 10px;
+}
+
+/* Individual Genre Buttons ("Chips") */
+.genre-chip {
+    display: inline-block;
+    white-space: nowrap; /* Prevents text inside the chip from splitting up */
+    padding: 8px 18px;
+    background-color: #f5f5f5;
+    color: #333;
+    text-decoration: none;
+    border-radius: 20px;
+    font-weight: 500;
+    font-size: 0.95rem;
+    transition: all 0.2s ease-in-out;
+    border: 1px solid #ddd;
+}
+
+/* Hover & Active States */
+.genre-chip:hover {
+    background-color: #e8e8e8;
+    border-color: #bbb;
+}
+
+.genre-chip.active {
+    background-color: #ff9f43; /* Match your layout's orange color scheme */
+    color: white;
+    border-color: #ff9f43;
+}

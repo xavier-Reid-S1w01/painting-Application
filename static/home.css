@@ -1,14 +1,14 @@
-/* 1. Use 'flex-start' so the images sit close together instead of spreading out */
+/*   images spacing */
 .top-row {
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
-  justify-content: flex-start; /* Aligns them to the left, side-by-side */
-  gap: 15px;                   /* Adds a nice, small gap between each painting */
+  justify-content: flex-start; 
+  gap: 15px;                   
   width: 100%;
 }
 
-/* ONLY home page image row targets left here */
+
 .home-page .top-row img {
   width: 24%;                  
   height: auto;

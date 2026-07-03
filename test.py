@@ -24,7 +24,7 @@ def query_db(query, args=(), one=False):
     return (rv[0] if rv else None) if one else rv
 
 
-# 1. HOME ROUTE (Combines your database query with your home page)
+# HOME ROUTE Combines your database query with your home page
 @app.route("/")
 def home():
     # This grabs all rows from the Paintings table
@@ -32,19 +32,35 @@ def home():
     # This sends that list to the HTML
     return render_template("home.html", Paintings=all_paintings)
 
-
-# 2. ARTWORKS ROUTE
 @app.route('/artworks')
 def artworks():
-    return render_template('artworks.html') 
+    # 1. Look for a text name in the URL instead of an ID (e.g., ?movement=Impressionism)
+    selected_movement = request.args.get('movement', type=str)
+    
+    conn = sqlite3.connect('database.db')
+    cursor = conn.cursor()
+    
+    # 2. Fetch the movement names to build your sliding menu
+    cursor.execute("SELECT MovementName FROM ArtMovement")
+    # Extract just the strings from the database tuples
+    movements_data = [row[0] for row in cursor.fetchall()]
+    
+    # 3. Filter paintings by text name
+    if selected_movement:
+        # Change 'Movement' to match your exact column name in the Paintings table (e.g., Genre)
+        cursor.execute("SELECT * FROM Paintings WHERE Movement = ?", (selected_movement,))
+    else:
+        cursor.execute("SELECT * FROM Paintings")
+        
+    paintings_data = cursor.fetchall()
+    conn.close()
+    
+    return render_template('artworks.html', 
+                           Movements=movements_data, 
+                           Paintings=paintings_data, 
+                           selected_movement=selected_movement)
 
 
-# 3. ARTIST ROUTE
-@app.route('/artist')
-def artist():
-    return render_template('artist.html')   
 
-
-# ALWAYS KEEP THIS AT the very bottom of your file
 if __name__ == "__main__":
     app.run(debug=True)
