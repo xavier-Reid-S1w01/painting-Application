@@ -31,16 +31,8 @@
 
     <div class="orange-bar"></div>
 
-<div class="genre-container">
-    <div class="genre-scroll-wrapper">
-        <a href="{{ url_for('artworks') }}" class="genre-chip {% if not selected_movement %}active{% endif %}">All Artworks</a>
-        
-        {% for movement in Movements %}
-            <a href="{{ url_for('artworks', movement_id=movement[0]) }}" 
-               class="genre-chip {% if selected_movement == movement[0] %}active{% endif %}">
-                {{ movement[1] }} </a>
-        {% endfor %}
-    </div>
+
+    
 </div>
 </div>
 
