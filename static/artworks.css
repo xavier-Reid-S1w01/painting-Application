@@ -45,64 +45,179 @@ main, body, html {
     margin: 0;
 }
 
-/* Container that holds the whole track */
-.genre-container {
-    width: 100%;
-    max-width: 1200px;
-    margin: 20px auto;
-    padding: 10px 20px;
-    overflow: hidden; /* Kepp it clean */
+/* ======================================================
+   ART MOVEMENTS GRID & HOVER CARDS
+   ====================================================== */
+
+.movements-section {
+    text-align: center;
+    padding: 30px 20px;
 }
 
-/* The actual scrolling track */
-.genre-scroll-wrapper {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: nowrap; /* Prevents chips from wrapping to a new line */
-    gap: 12px;
-    overflow-x: auto;  /* Enables sideways scrolling */
-    padding-bottom: 8px; /* Room for custom scrollbar */
-    
-    /* Smooth scrolling feel on mobile touch screens */
-    -webkit-overflow-scrolling: touch; 
-}
-
-/* Hide default ugly scrollbars in Webkit browsers (Chrome/Safari) */
-.genre-scroll-wrapper::-webkit-scrollbar {
-    height: 6px;
-}
-.genre-scroll-wrapper::-webkit-scrollbar-track {
-    background: #f1f1f1;
-    border-radius: 10px;
-}
-.genre-scroll-wrapper::-webkit-scrollbar-thumb {
-    background: #e0a96d; /* Use a color matching your design theme */
-    border-radius: 10px;
-}
-
-/* Individual Genre Buttons ("Chips") */
-.genre-chip {
-    display: inline-block;
-    white-space: nowrap; /* Prevents text inside the chip from splitting up */
-    padding: 8px 18px;
-    background-color: #f5f5f5;
+.movements-section h2 {
+    font-family: serif;
+    font-size: 2rem;
+    margin-bottom: 25px;
     color: #333;
+}
+
+/* Grid layout for equal spacing */
+.movements-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Individual Card Box */
+.movement-card {
+    position: relative;
+    width: 220px;
+    height: 140px;
+    border-radius: 8px;
+    overflow: hidden; /* Clips the zoomed image inside the box */
     text-decoration: none;
-    border-radius: 20px;
-    font-weight: 500;
-    font-size: 0.95rem;
-    transition: all 0.2s ease-in-out;
-    border: 1px solid #ddd;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+    transition: box-shadow 0.3s ease;
 }
 
-/* Hover & Active States */
-.genre-chip:hover {
-    background-color: #e8e8e8;
-    border-color: #bbb;
+/* Background image layer (handles scaling animation) */
+.movement-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    transition: transform 0.4s ease; /* Smooth zoom transition */
 }
 
-.genre-chip.active {
-    background-color: #ff9f43; /* Match your layout's orange color scheme */
-    color: white;
-    border-color: #ff9f43;
+/* Dark overlay for contrast */
+.movement-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.45); 
+    transition: background 0.3s ease;
+}
+
+/* Title text overlay */
+.movement-title {
+    position: relative;
+    z-index: 1;
+    color: #ffffff;
+    font-family: serif;
+    font-size: 1.25rem;
+    font-weight: bold;
+    text-align: center;
+    padding: 0 10px;
+    text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.8);
+}
+
+/* HOVER EFFECTS: Zooms image & brightens card slightly */
+.movement-card:hover .movement-bg {
+    transform: scale(1.15);
+}
+
+.movement-card:hover .movement-overlay {
+    background: rgba(0, 0, 0, 0.25);
+}
+
+.movement-card:hover {
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.25);
+}
+
+/* Container for the Movements section */
+.movements-section {
+    text-align: center;
+    padding: 30px 20px;
+}
+
+.movements-section h2 {
+    font-family: serif;
+    font-size: 2rem;
+    margin-bottom: 25px;
+    color: #333;
+}
+
+/* Strictly 4 Columns Wide Grid */
+.movements-grid-4 {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* Forces exactly 4 equal columns */
+    gap: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Responsive adjustment for mobile/smaller screens */
+@media (max-width: 768px) {
+    .movements-grid-4 {
+        grid-template-columns: repeat(2, 1fr); /* Drops to 2 columns on phones/tablets */
+    }
+}
+
+/* Card Styling */
+.movement-card {
+    position: relative;
+    height: 150px;
+    border-radius: 8px;
+    overflow: hidden;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+/* Background Painting Layer */
+.movement-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    transition: transform 0.4s ease;
+}
+
+/* Dark Overlay for Text Contrast */
+.movement-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.45);
+    transition: background 0.3s ease;
+}
+
+/* Title text overlay */
+.movement-title {
+    position: relative;
+    z-index: 1;
+    color: #ffffff;
+    font-family: serif;
+    font-size: 1.25rem;
+    font-weight: bold;
+    text-align: center;
+    padding: 0 10px;
+    text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.8);
+}
+
+/* HOVER EFFECTS */
+.movement-card:hover .movement-bg {
+    transform: scale(1.12); /* Zoom effect on hover */
+}
+
+.movement-card:hover .movement-overlay {
+    background: rgba(0, 0, 0, 0.25); /* Slightly brightens overlay on hover */
 }

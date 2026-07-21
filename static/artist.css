@@ -1,0 +1,141 @@
+/* Force everything from the layout to drop margins on this specific page */
+main, body, html {
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+.artist-page {
+    margin-top: 0 !important;
+    padding-top: 0 !important;
+}
+
+.artist-page .top-row {
+    position: relative;
+    width: 100vw;               /* Force container to match browser viewport width */
+    margin-left: calc(-50vw + 50%); /* Centers full width breaks out of layout constraints */
+    margin-top: 0 !important;
+    padding-top: 0 !important;
+    display: block !important;  /* Overrides default flexbox behavior */
+}
+
+.artist-page .top-row img {
+    display: block !important;
+    width: 100% !important;     
+    height: 400px !important;              
+    object-fit: cover !important;          
+    margin-top: 0 !important;   
+}
+
+.artist-page .overlay-text {
+    position: absolute;   
+    top: 50%;             
+    left: 10%;            
+    transform: translateY(-50%); 
+    color: white;         
+    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7); 
+}
+
+.artist-page .overlay-text h2 {
+    font-size: 3rem;      
+    margin: 0 0 10px 0;   
+}
+
+.artist-page .overlay-text p {
+    font-size: 1.2rem;    
+    margin: 0;
+}
+
+/* ======================================================
+   ARTISTS GRID & HOVER CARDS (4-WIDE)
+   ====================================================== */
+
+.artists-section {
+    text-align: center;
+    padding: 30px 20px;
+}
+
+.artists-section h2 {
+    font-family: serif;
+    font-size: 2rem;
+    margin-bottom: 25px;
+    color: #333;
+}
+
+/* Enforces exactly 4 equal columns */
+.artists-grid-4 {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Drop to 2 columns on tablets/mobile screens */
+@media (max-width: 768px) {
+    .artists-grid-4 {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* Individual Card Box */
+.artist-card {
+    position: relative;
+    height: 150px;
+    border-radius: 8px;
+    overflow: hidden; /* Clips the zoomed image inside the box */
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+    transition: box-shadow 0.3s ease;
+}
+
+/* Background image layer (handles zoom animation) */
+.artist-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    transition: transform 0.4s ease; /* Smooth hover transition */
+}
+
+/* Dark overlay so white text stands out clearly */
+.artist-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.45); 
+    transition: background 0.3s ease;
+}
+
+/* Title text overlay */
+.artist-title {
+    position: relative;
+    z-index: 1;
+    color: #ffffff;
+    font-family: serif;
+    font-size: 1.25rem;
+    font-weight: bold;
+    text-align: center;
+    padding: 0 10px;
+    text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.8);
+}
+
+/* HOVER EFFECTS: Zooms image & brightens card slightly */
+.artist-card:hover .artist-bg {
+    transform: scale(1.15);
+}
+
+.artist-card:hover .artist-overlay {
+    background: rgba(0, 0, 0, 0.25);
+}
+
+.artist-card:hover {
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.25);
+}

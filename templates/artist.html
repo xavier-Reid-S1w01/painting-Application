@@ -1,8 +1,32 @@
 {% extends "layout.html" %}
 
-{% block body %}
-<div class="top-row">
-    <h2>About the Artists</h2>
-</div>
+{% block styles %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='artist.css') }}">
+{% endblock %}
 
+{% block body %}
+<div class="artist-page">
+
+    <div class="top-row">
+        <img src="https://i.guim.co.uk/img/static/sys-images/Guardian/Pix/pictures/2013/11/21/1385039552663/Rembrandt-self-portrait-f-010.jpg?width=465&dpr=1&s=none&crop=none" alt="Art Museum">
+        <div class="overlay-text">
+            <h2>Artists</h2>
+            <p>Explore the Lives and Works of Famous Artists</p>
+        </div>
+    </div> <div class="orange-bar"></div>
+
+    <div class="artists-section">
+        <h2>Artists</h2>
+        <div class="artists-grid-4">
+            {% for artist in artists %}
+            <a href="{{ url_for('artworks', artist_id=artist['ArtistID']) }}" class="artist-card">
+                <div class="artist-bg" style="background-image: url('{{ artist['ArtistImage'] }}');"></div>
+                <div class="artist-overlay"></div>
+                <span class="artist-title">{{ artist['ArtistName'] }}</span>
+            </a>
+            {% endfor %}
+        </div>
+    </div>
+
+</div>
 {% endblock %}

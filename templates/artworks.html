@@ -15,25 +15,21 @@
         </div>
     </div>
 
-    <div class="content-wrapper">
-        <div class="artworks-grid">
-            {% for painting in Paintings %}
-                <div class="artwork-card">
-                    <img src="{{ painting[7] }}" alt="{{ painting[1] }}">
-                    <div class="artwork-info">
-                        <h3>{{ painting[1] }}</h3>
-                        <p class="artist-name">By {{ painting[2] }}</p>
-                    </div>
-                </div>
+   <div class="orange-bar"></div>
+
+    <div class="movements-section">
+        <h2>Art Movements</h2>
+        <div class="movements-grid-4">
+            {% for movement in movements %}
+                <a href="{{ url_for('artworks', movement_id=movement['MovementID']) }}" class="movement-card">
+                    <div class="movement-bg" style="background-image: url('{{ movement['MovementImage'] }}');"></div>
+                    <div class="movement-overlay"></div>
+                    <span class="movement-title">{{ movement['MovementName'] }}</span>
+                </a>
             {% endfor %}
         </div>
     </div>
 
-    <div class="orange-bar"></div>
 
-
-    
 </div>
-</div>
-
-</div> {% endblock %}
+{% endblock %}
