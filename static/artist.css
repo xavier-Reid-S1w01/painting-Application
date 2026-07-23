@@ -11,11 +11,11 @@ main, body, html {
 
 .artist-page .top-row {
     position: relative;
-    width: 100vw;               /* Force container to match browser viewport width */
-    margin-left: calc(-50vw + 50%); /* Centers full width breaks out of layout constraints */
+    width: 100vw;              
+    margin-left: calc(-50vw + 50%); 
     margin-top: 0 !important;
     padding-top: 0 !important;
-    display: block !important;  /* Overrides default flexbox behavior */
+    display: block !important;  
 }
 
 .artist-page .top-row img {
@@ -45,9 +45,7 @@ main, body, html {
     margin: 0;
 }
 
-/* ======================================================
-   ARTISTS GRID & HOVER CARDS (4-WIDE)
-   ====================================================== */
+/*ARTISTS SELECTION GRID */
 
 .artists-section {
     text-align: center;

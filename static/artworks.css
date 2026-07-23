@@ -11,11 +11,11 @@ main, body, html {
 
 .artworks-page .top-row {
     position: relative;
-    width: 100vw;               /* Force container to match browser viewport width */
-    margin-left: calc(-50vw + 50%); /* Centers full width breaks out of layout constraints */
+    width: 100vw;               
+    margin-left: calc(-50vw + 50%); 
     margin-top: 0 !important;
     padding-top: 0 !important;
-    display: block !important;  /* Overrides the flexbox behavior from home.css */
+    display: block !important;  
 }
 
 .artworks-page .top-row img {
@@ -45,9 +45,7 @@ main, body, html {
     margin: 0;
 }
 
-/* ======================================================
-   ART MOVEMENTS GRID & HOVER CARDS
-   ====================================================== */
+/* Artworks movement selection */
 
 .movements-section {
     text-align: center;
@@ -157,67 +155,64 @@ main, body, html {
     margin: 0 auto;
 }
 
-/* Responsive adjustment for mobile/smaller screens */
-@media (max-width: 768px) {
-    .movements-grid-4 {
-        grid-template-columns: repeat(2, 1fr); /* Drops to 2 columns on phones/tablets */
-    }
-}
 
-/* Card Styling */
-.movement-card {
-    position: relative;
-    height: 150px;
-    border-radius: 8px;
-    overflow: hidden;
-    text-decoration: none;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
-}
 
-/* Background Painting Layer */
-.movement-bg {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-size: cover;
-    background-position: center;
-    transition: transform 0.4s ease;
-}
-
-/* Dark Overlay for Text Contrast */
-.movement-overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.45);
-    transition: background 0.3s ease;
-}
-
-/* Title text overlay */
-.movement-title {
-    position: relative;
-    z-index: 1;
-    color: #ffffff;
-    font-family: serif;
-    font-size: 1.25rem;
-    font-weight: bold;
+/* --- Filter Page Styles --- */
+.filter-page-container {
+    padding: 40px 20px;
     text-align: center;
-    padding: 0 10px;
-    text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.8);
 }
 
-/* HOVER EFFECTS */
-.movement-card:hover .movement-bg {
-    transform: scale(1.12); /* Zoom effect on hover */
+.filter-heading {
+    font-family: serif;
+    font-size: 2.2rem;
+    margin-bottom: 30px;
+    color: #222;
 }
 
-.movement-card:hover .movement-overlay {
-    background: rgba(0, 0, 0, 0.25); /* Slightly brightens overlay on hover */
+/* Strict 4-Column Layout */
+.filter-artworks-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 30px;
+    max-width: 1200px;
+    margin: 0 auto;
+    align-items: start;
+}
+
+.painting-card-link {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+}
+
+.painting-card {
+    text-align: center;
+    transition: transform 0.2s ease;
+}
+
+.painting-card:hover {
+    transform: translateY(-4px);
+}
+
+.painting-img {
+    width: 100%;
+    height: auto;
+    display: block;
+    margin: 0 auto 10px auto;
+    border-radius: 4px;
+}
+
+.painting-card h3 {
+    font-family: serif;
+    font-size: 1.1rem;
+    font-weight: bold;
+    margin: 8px 0 4px 0;
+    color: #000;
+}
+
+.painting-card p {
+    font-size: 0.9rem;
+    color: #555;
+    margin: 0;
 }

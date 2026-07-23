@@ -1,29 +1,31 @@
 {% extends "layout.html" %}
 
 {% block styles %}
-    <link rel="stylesheet" href="{{ url_for('static', filename='artist.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='artworks.css') }}">
 {% endblock %}
 
 {% block body %}
-<div class="artist-page">
+<div class="artworks-page">
 
     <div class="top-row">
-        <img src="https://i.guim.co.uk/img/static/sys-images/Guardian/Pix/pictures/2013/11/21/1385039552663/Rembrandt-self-portrait-f-010.jpg?width=465&dpr=1&s=none&crop=none" alt="Art Museum">
+        <img src="https://media.architecturaldigest.com/photos/55e76762cd709ad62e8e8d4e/master/pass/dam-images-architecture-2015-09-university-art-museums-university-of-michigan-museum-of-art-01.jpg" alt="Art Museum">
         <div class="overlay-text">
             <h2>Artists</h2>
-            <p>Explore the Lives and Works of Famous Artists</p>
+            <p>Discover Legendary Master Painters</p>
         </div>
-    </div> <div class="orange-bar"></div>
+    </div>
 
-    <div class="artists-section">
-        <h2>Artists</h2>
-        <div class="artists-grid-4">
+    <div class="orange-bar"></div>
+
+    <div class="movements-section">
+        <h2>Featured Artists</h2>
+        <div class="movements-grid-4">
             {% for artist in artists %}
-            <a href="{{ url_for('artworks', artist_id=artist['ArtistID']) }}" class="artist-card">
-                <div class="artist-bg" style="background-image: url('{{ artist['ArtistImage'] }}');"></div>
-                <div class="artist-overlay"></div>
-                <span class="artist-title">{{ artist['ArtistName'] }}</span>
-            </a>
+                <a href="{{ url_for('filter_page', artist_id=artist['ArtistID']) }}" class="movement-card">
+                    <div class="movement-bg" style="background-image: url('{{ artist['ArtistImage'] }}');"></div>
+                    <div class="movement-overlay"></div>
+                    <span class="movement-title">{{ artist['ArtistName'] }}</span>
+                </a>
             {% endfor %}
         </div>
     </div>

@@ -15,13 +15,13 @@
         </div>
     </div>
 
-   <div class="orange-bar"></div>
+    <div class="orange-bar"></div>
 
     <div class="movements-section">
         <h2>Art Movements</h2>
         <div class="movements-grid-4">
             {% for movement in movements %}
-                <a href="{{ url_for('artworks', movement_id=movement['MovementID']) }}" class="movement-card">
+                <a href="{{ url_for('filter_page', movement_id=movement['MovementID']) }}" class="movement-card">
                     <div class="movement-bg" style="background-image: url('{{ movement['MovementImage'] }}');"></div>
                     <div class="movement-overlay"></div>
                     <span class="movement-title">{{ movement['MovementName'] }}</span>
@@ -29,7 +29,6 @@
             {% endfor %}
         </div>
     </div>
-
 
 </div>
 {% endblock %}

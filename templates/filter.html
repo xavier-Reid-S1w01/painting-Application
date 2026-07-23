@@ -1,0 +1,27 @@
+{% extends "layout.html" %}
+
+{% block styles %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='artworks.css') }}">
+{% endblock %}
+
+{% block body %}
+<div class="filter-page-container">
+
+    <h2 class="filter-heading">{{ page_title }}</h2>
+
+    <div class="filter-artworks-grid">
+        {% for painting in Paintings %}
+           <a href="{{ url_for('painting_detail', painting_id=painting['PaintingsID']) }}" class="painting-card-link">
+                <div class="painting-card">
+                    <img src="{{ painting['ImageURL'] }}" alt="{{ painting['Title'] }}" class="painting-img">
+                    <h3>{{ painting['Title'] }}</h3>
+                    <p>Year: {{ painting['YearCreated'] }}</p>
+                </div>
+            </a>
+        {% else %}
+            <p>No paintings found for this category.</p>
+        {% endfor %}
+    </div>
+
+</div>
+{% endblock %}
