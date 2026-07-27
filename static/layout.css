@@ -6,9 +6,9 @@ body {
   text-align: center;
 }
 
-/* Header Background (Cream color top section) */
+/* Header Container */
 .header-container {
-    background-color: #fdf0d5; /* Cream background */
+    background-color: #fdf0d5;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -22,52 +22,60 @@ body {
     color: #222;
 }
 
-/* Search Form (Centered) */
+/* Search Form - Hides the separate Search button completely */
 .search-form {
     display: flex;
     align-items: center;
-    gap: 10px;
     margin-bottom: 25px;
 }
 
-/* Rounded Pill Search Input */
+/* Slick pill-shaped search bar */
 .search-bar {
     width: 320px;
     padding: 10px 20px;
     border: 1px solid #dcdcdc;
-    border-radius: 25px; /* Creates full pill shape */
+    border-radius: 25px;
     outline: none;
     font-size: 0.95rem;
     text-align: center;
 }
 
+.search-bar:focus {
+    border-color: #f7a033;
+    box-shadow: 0 0 5px rgba(247, 160, 51, 0.5);
+}
+
+/* Hides the bulky "Search" button next to the input */
 .search-btn {
-    padding: 8px 16px;
-    background-color: #f5f5f5;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    cursor: pointer;
-    font-size: 0.9rem;
+    display: none; 
 }
 
-.search-btn:hover {
-    background-color: #e5e5e5;
-}
-
-/* Bottom Nav Bar (Darker Orange Strip) */
+/* Navigation Bar - Pushed in from the edges */
 .nav-bar {
     width: 100%;
-    background-color: #ffb347; /* Darker orange bar */
+    background-color: #ffb347;
     display: flex;
     justify-content: flex-start;
     gap: 40px;
-    padding: 12px 40px;
+    padding: 12px 60px; /* Increased 60px padding pushes "Home" away from the edge */
+    box-sizing: border-box; /* Ensures padding doesn't overflow screen width */
 }
 
+/* Navigation Links + Clear Hover State */
 .nav-bar a {
     font-family: serif;
     font-weight: bold;
     font-size: 1.1rem;
     color: #000;
     text-decoration: none;
+    padding: 4px 10px;
+    border-radius: 4px;
+    transition: all 0.2s ease;
+}
+
+/* High-contrast Hover Effect */
+.nav-bar a:hover {
+    background-color: rgba(0, 0, 0, 0.15); /* Darkens background under text */
+    color: #000;
+    transform: translateY(-1px);
 }
