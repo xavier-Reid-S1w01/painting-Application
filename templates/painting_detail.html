@@ -1,0 +1,33 @@
+{% extends "layout.html" %}
+
+{% block styles %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='painting_detail.css') }}">
+{% endblock %}
+
+{% block body %}
+<div class="painting-detail-container">
+
+    <div class="painting-detail-image">
+        <img src="{{ painting['ImageURL'] }}" alt="{{ painting['Title'] }}">
+    </div>
+
+    <div class="painting-detail-info">
+        <h1>{{ painting['Title'] }}</h1>
+        <p class="artist-name">By <strong>{{ painting['ArtistName'] }}</strong></p>
+        
+        <hr>
+
+        <p><strong>Year Created:</strong> {{ painting['YearCreated'] }}</p>
+        <p><strong>Art Movement:</strong> {{ painting['MovementName'] }}</p>
+        
+        {% if painting['Description'] %}
+            <p class="description">{{ painting['Description'] }}</p>
+        {% endif %}
+
+        <div class="back-btn-container">
+            <a href="javascript:history.back()" class="back-btn">← Back</a>
+        </div>
+    </div>
+
+</div>
+{% endblock %}

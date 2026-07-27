@@ -100,9 +100,40 @@ def filter_page():
 
 @app.route('/painting/<int:painting_id>')
 def painting_detail(painting_id):
-    painting = query_db("SELECT * FROM Paintings WHERE PaintingID = ?", [painting_id], one=True)
+    # Fetch the specific painting and join Artist & Movement names
+    painting = query_db('''
+        SELECT Paintings.*, 
+               Artist.ArtistName, 
+               ArtMovement.MovementName
+        FROM Paintings
+        LEFT JOIN Artist ON Paintings.ArtistID = Artist.ArtistID
+        LEFT JOIN ArtMovement ON Paintings.MovementID = ArtMovement.MovementID
+        WHERE Paintings.PaintingsID = ?
+    ''', [painting_id], one=True)
+
     return render_template("painting_detail.html", painting=painting)
 
+@app.route('/search')
+def search():
+    search_query = request.args.get('query', '').strip()
+    
+    if search_query:
+        # Search for matching titles OR matching artist names
+        paintings = query_db('''
+            SELECT Paintings.*, Artist.ArtistName 
+            FROM Paintings
+            LEFT JOIN Artist ON Paintings.ArtistID = Artist.ArtistID
+            WHERE Paintings.Title LIKE ? OR Artist.ArtistName LIKE ?
+        ''', [f'%{search_query}%', f'%{search_query}%'])
+    else:
+        paintings = []
+
+    # Re-use your filter.html template to render the results!
+    return render_template(
+        "filter.html", 
+        Paintings=paintings, 
+        page_title=f"Search Results for '{search_query}'"
+    )
 
 if __name__ == "__main__":
     app.run(debug=True)

@@ -6,95 +6,68 @@ body {
   text-align: center;
 }
 
-/*  Header and search bar */
-header h1 {
-  font-size: 5rem;
-  margin: 30px 0 10px 0;
-  font-weight: normal;
+/* Header Background (Cream color top section) */
+.header-container {
+    background-color: #fdf0d5; /* Cream background */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 20px;
 }
 
-.search-container {
-  margin-bottom: 25px;
+.header-title {
+    font-family: serif;
+    font-size: 2.2rem;
+    margin: 0 0 15px 0;
+    color: #222;
 }
 
-.search-bar {
-  width: 320px;
-  padding: 10px 15px;
-  border-radius: 25px;
-  border: 1px solid #ccc;
-  text-align: center;
-  outline: none;
-}
-
-/* navigation bar */
-
-nav, .orange-bar {
-  background-color: #FFB347;
-  height: 60px; 
-  width: 100%;
-  box-sizing: border-box;
-  margin-bottom: 25px;
-}
-
-nav {
-  display: flex;
-  justify-content: flex-start;
-  align-items: center; 
-  padding-left: 60px;
-  gap: 40px; 
-}
-
-
-.orange-bar {
-  margin-top: 25px; 
-}
-
-nav a {
-  text-decoration: none;
-  color: #000; 
-  font-weight: bold;
-}
-
-nav a:hover {
-  color: #FFFFFF;
-  transition: color 0.3s ease;
-}
-
-/* Footer Container */
-.footer-section {
-    padding: 0px 20px 40px 20px;
-    background-color: #fdf1d6;
-    text-align: left;
-}
-
-/* ArtVault text */
-.brand-name {
-    font-family: "Times New Roman", serif;
-    font-size: 40px;
-    color: #000000;
-    margin-top: 10px;      
-    margin-left: 25px;     
+/* Search Form (Centered) */
+.search-form {
+    display: flex;
+    align-items: center;
+    gap: 10px;
     margin-bottom: 25px;
 }
 
-/* Clickable Link */
-.footer-links {
+/* Rounded Pill Search Input */
+.search-bar {
+    width: 320px;
+    padding: 10px 20px;
+    border: 1px solid #dcdcdc;
+    border-radius: 25px; /* Creates full pill shape */
+    outline: none;
+    font-size: 0.95rem;
+    text-align: center;
+}
+
+.search-btn {
+    padding: 8px 16px;
+    background-color: #f5f5f5;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.9rem;
+}
+
+.search-btn:hover {
+    background-color: #e5e5e5;
+}
+
+/* Bottom Nav Bar (Darker Orange Strip) */
+.nav-bar {
+    width: 100%;
+    background-color: #ffb347; /* Darker orange bar */
     display: flex;
-    flex-direction: column; 
-    gap: 12px;              
+    justify-content: flex-start;
+    gap: 40px;
+    padding: 12px 40px;
 }
 
-/* Link Styling */
-.footer-links a {
-    font-family: "Times New Roman", serif;
-    font-size: 16px;
-    color: #000000;
-    text-decoration: none; 
-    width: fit-content;    
-    transition: color 0.2s ease;
-    margin-left: 25px;
-}
-
-.footer-links a:hover {
-    color: #fff;       
+.nav-bar a {
+    font-family: serif;
+    font-weight: bold;
+    font-size: 1.1rem;
+    color: #000;
+    text-decoration: none;
 }
