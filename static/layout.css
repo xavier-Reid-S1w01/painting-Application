@@ -50,32 +50,30 @@ body {
     display: none; 
 }
 
-/* Navigation Bar - Pushed in from the edges */
+/* Navigation Bar */
 .nav-bar {
     width: 100%;
-    background-color: #ffb347;
+    background-color: #ffb347; /* Your orange navbar color */
     display: flex;
     justify-content: flex-start;
     gap: 40px;
-    padding: 12px 60px; /* Increased 60px padding pushes "Home" away from the edge */
-    box-sizing: border-box; /* Ensures padding doesn't overflow screen width */
+    padding: 14px 60px;
+    box-sizing: border-box;
+    margin-bottom: 0; /* REMOVES the gap below the navbar */
 }
 
-/* Navigation Links + Clear Hover State */
+/* Nav Link Styling */
 .nav-bar a {
     font-family: serif;
     font-weight: bold;
     font-size: 1.1rem;
     color: #000;
     text-decoration: none;
-    padding: 4px 10px;
-    border-radius: 4px;
-    transition: all 0.2s ease;
+    transition: color 0.2s ease; /* Smooth transition for text color only */
 }
 
-/* High-contrast Hover Effect */
+/* Hover Effect: No background box, text turns light gray */
 .nav-bar a:hover {
-    background-color: rgba(0, 0, 0, 0.15); /* Darkens background under text */
-    color: #000;
-    transform: translateY(-1px);
+    color: #666666; /* Light gray text */
+    background-color: transparent; /* Ensures no dark box appears */
 }

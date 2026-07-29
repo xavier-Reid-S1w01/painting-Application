@@ -27,7 +27,6 @@
             class="search-bar" 
             required
         >
-        <button type="submit" class="search-btn">Search</button>
     </form>
 
     <nav class="nav-bar">
@@ -37,9 +36,9 @@
     </nav>
 </header>
 
-    <main>
-        {% block body %}{% endblock %}
-    </main>
+<main class="main-content">
+    {% block body %}
+    {% endblock %}
+</main>
 
-    <div class="orange-bar"></div>
-
+<div class="orange-bar-bottom"></div>
