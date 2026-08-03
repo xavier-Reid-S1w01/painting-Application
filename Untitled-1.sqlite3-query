@@ -1,0 +1,12 @@
+-- database: ./database.db
+
+SELECT * FROM ArtMovement;
+
+UPDATE Paintings
+SET ImageURL = 'https://commons.wikimedia.org/wiki/Special:FilePath/' || 
+    SUBSTR(
+        ImageURL, 
+        INSTR(ImageURL, '/thumb/') + 11, 
+        INSTR(SUBSTR(ImageURL, INSTR(ImageURL, '/thumb/') + 11), '/') - 1
+    )
+WHERE ImageURL LIKE '%upload.wikimedia.org/wikipedia/commons/thumb/%';
