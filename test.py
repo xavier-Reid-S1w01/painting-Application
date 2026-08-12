@@ -1,40 +1,71 @@
+
+# Import Flask framework tools for building the web app
 from flask import Flask, render_template, request, g
+# Import SQLite module to interact with the database
 import sqlite3 
 
+# Initialize the Flask application instance
 app = Flask(__name__)
 
+# Filepath to the SQLite database file
 DATABASE = 'database.db'
 
+
 def get_db():
+    """
+    Opens a new database connection if one doesn't exist for the current context.
+    'g' is a special Flask object that stores data unique to a single request.
+    """
     db = getattr(g, '_database', None)
     if db is None:
         db = g._database = sqlite3.connect(DATABASE)
-        # Allows accessing columns by name in templates (e.g., row['MovementName'])
+        
+        # Configure rows to act like dictionaries so columns can be accessed by name
         db.row_factory = sqlite3.Row
     return db
 
+
 @app.teardown_appcontext
 def close_connection(exception):
+    """
+    Automatically closes the database connection when the request finishes
+    or the app context shuts down.
+    """
     db = getattr(g, '_database', None)
     if db is not None:
         db.close()
 
+
 def query_db(query, args=(), one=False):
+    """
+    Helper function to run SQL queries easily.
+    - query: SQL statement to execute.
+    - args: Parameters to safely plug into the query (prevents SQL injection).
+    - one: If True, returns only the first result instead of a list.
+    """
     cur = get_db().execute(query, args)
     rv = cur.fetchall()
     cur.close()
+    
+    # Return a single record if requested, otherwise return the full list of records
     return (rv[0] if rv else None) if one else rv
 
 
-# HOME ROUTE
+# HOME PAGE
 @app.route("/")
 def home():
+    """Fetches all paintings from the database and renders the homepage."""
     all_paintings = query_db("SELECT * FROM Paintings")
     return render_template("home.html", Paintings=all_paintings)
 
+
+# ARTISTS DIRECTORY PAGE
 @app.route('/artist')
 def artist():
-    # Fetch artists AND the first painting's ImageURL as cover image
+    """
+    Fetches all artists alongside the cover image of their first available painting,
+    then renders the artist directory page.
+    """
     all_artists = query_db('''
         SELECT Artist.ArtistID,
                Artist.ArtistName,
@@ -47,9 +78,14 @@ def artist():
     return render_template("artist.html", artists=all_artists)
 
 
+# ARTWORKS PAGE (WITH OPTIONAL FILTERING)
 @app.route('/artworks')
 def artworks():
-    # Fetch movements AND the first painting's ImageURL for each movement
+    """
+    Fetches movement categories with sample cover images.
+    Filters paintings by movement if 'movement_id' is passed in URL query parameters.
+    """
+    # Query distinct movements and attach a representative image from the Paintings table
     all_movements = query_db('''
         SELECT ArtMovement.MovementID, 
                ArtMovement.MovementName, 
@@ -59,9 +95,10 @@ def artworks():
         GROUP BY ArtMovement.MovementID
     ''')
     
-    # Filter paintings if a movement link was clicked
+    # Check URL query parameters (e.g., /artworks?movement_id=2)
     selected_movement_id = request.args.get('movement_id')
     
+    # Conditionally load filtered or unfiltered paintings
     if selected_movement_id:
         paintings = query_db("SELECT * FROM Paintings WHERE MovementID = ?", [selected_movement_id])
     else:
@@ -69,38 +106,49 @@ def artworks():
 
     return render_template("artworks.html", movements=all_movements, Paintings=paintings)
 
+
+# DYNAMIC FILTER RESULTS PAGE
 @app.route('/filter')
 def filter_page():
-    # Read the parameter from the URL bar
+    """
+    Handles filtering logic for specific artists or movements.
+    Dynamically sets the page title based on the selected filter.
+    """
+    # Extract query parameters from URL (e.g., /filter?artist_id=3)
     selected_movement_id = request.args.get('movement_id')
     selected_artist_id = request.args.get('artist_id')
 
-    #  Query the database depending on what was clicked
     if selected_movement_id:
-        # Fetch paintings for the clicked movement
+        # Fetch paintings belonging to the selected art movement
         paintings = query_db("SELECT * FROM Paintings WHERE MovementID = ?", [selected_movement_id])
-        # Fetch the movement details for a page title heading
+        
+        # Get category name for the header title
         category_title = query_db("SELECT MovementName FROM ArtMovement WHERE MovementID = ?", [selected_movement_id], one=True)
         title = category_title['MovementName'] if category_title else "Filter Results"
 
     elif selected_artist_id:
-        # Fetch paintings by the clicked artist
+        # Fetch paintings created by the selected artist
         paintings = query_db("SELECT * FROM Paintings WHERE ArtistID = ?", [selected_artist_id])
-        # Fetch the artist details for a page title heading
+        
+        # Get artist name for the header title
         category_title = query_db("SELECT ArtistName FROM Artist WHERE ArtistID = ?", [selected_artist_id], one=True)
         title = category_title['ArtistName'] if category_title else "Filter Results"
 
     else:
-        # Fallback: if no query parameter is passed
+        # Fallback view: Display all paintings if no parameter was provided
         paintings = query_db("SELECT * FROM Paintings")
         title = "All Paintings"
 
-    # Pass the filtered results and title into filter.html
     return render_template("filter.html", Paintings=paintings, page_title=title)
 
+
+# SINGLE PAINTING DETAILS PAGE
 @app.route('/painting/<int:painting_id>')
 def painting_detail(painting_id):
-    # Fetch the specific painting and join Artist & Movement names
+    """
+    Fetches comprehensive details for a specific painting by joining
+    the Paintings table with Artist and ArtMovement tables using its ID.
+    """
     painting = query_db('''
         SELECT Paintings.*, 
                Artist.ArtistName, 
@@ -113,12 +161,19 @@ def painting_detail(painting_id):
 
     return render_template("painting_detail.html", painting=painting)
 
+
+# SEARCH RESULTS PAGE
 @app.route('/search')
 def search():
+    """
+    Searches the database for paintings where the title OR artist name 
+    matches the user's search query string.
+    """
+    # Retrieve user query parameter and strip whitespace
     search_query = request.args.get('query', '').strip()
     
     if search_query:
-        # Search for matching titles OR matching artist names
+        # SQL LIKE search using wildcard operators (%)
         paintings = query_db('''
             SELECT Paintings.*, Artist.ArtistName 
             FROM Paintings
@@ -128,7 +183,7 @@ def search():
     else:
         paintings = []
 
-    # Re-use your filter.html template to render the results!
+    # Reuses the generic filter.html template to render search results
     return render_template(
         "filter.html", 
         Paintings=paintings, 
@@ -136,4 +191,5 @@ def search():
     )
 
 if __name__ == "__main__":
+    # Start the Flask local development server with debug logging enabled
     app.run(debug=True)
